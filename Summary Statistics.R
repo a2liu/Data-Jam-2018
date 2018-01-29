@@ -1,9 +1,9 @@
-setwd("C:/Users/Alyer/Desktop/R/Data Jam 2018/CSV Files")
+setwd("Directory of file folder")
 library(Hmisc)
 
 #Read in Data
 generalData<-read.csv("General Datasheet for analysis.csv")
-conditionsList<-read.csv("List of Diseases.csv")
+conditionsList<-read.csv("List of Diseases.csv")[,1]
 
 #Total Rows
 matrix(c(dim(generalData)),ncol=2,nrow=1,byrow = TRUE,dimnames = list(c(""),c("Rows:","Columns:")))
@@ -16,15 +16,15 @@ paste("Average Age:", sum(generalData[,19])/dim(generalData)[1])
 describe(generalData[,19])
 
 #Amounts of occurences of each condition
-conditionSummary <-matrix(c(as.character(conditionsList[,1])),ncol=14,nrow=2,byrow = TRUE)
-for (x in 1:dim(conditionsList)[1]) {
+conditionSummary <-matrix(c(as.character(conditionsList)),ncol=14,nrow=2,byrow = TRUE)
+for (x in 1:length(conditionsList)) {
   conditionSummary[2,x]<-sum(generalData[,x+2])
 }
 conditionSummary
 
 #Amounts of occurences of each condition, alone
-conditionSummary2 <-matrix(c(as.character(conditionsList[,1])),ncol=14,nrow=2,byrow = TRUE)
-for (x in 1:dim(conditionsList)[1]) {
+conditionSummary2 <-matrix(c(as.character(conditionsList)),ncol=14,nrow=2,byrow = TRUE)
+for (x in 1:length(conditionsList)) {
   conditionSummary2[2,x]<-length(which(generalData[,2]==conditionSummary2[1,x]))
 }
 conditionSummary2
