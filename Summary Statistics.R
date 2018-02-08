@@ -14,6 +14,7 @@ matrix(c(colnames(generalData)),ncol=1,dimnames = list(c(1:25),c("")))
 #Age
 paste("Average Age:", sum(generalData[,19])/dim(generalData)[1])
 describe(generalData[,19])
+hist(generalData[,19],xlim = c(0,100),breaks = 200)
 
 #Amounts of occurences of each condition
 conditionSummary <-matrix(c(as.character(conditionsList)),ncol=14,nrow=2,byrow = TRUE)
